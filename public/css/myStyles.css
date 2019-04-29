@@ -1,0 +1,35 @@
+h1{
+    text-align: center;
+}
+
+.container{
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+table{
+    border:2px solid black;
+    border-spacing:0;
+}
+
+thead th{
+    border-bottom: 2px solid black;
+}
+
+th{
+    padding-right: 30px;
+    border-bottom: 1px solid black;
+}
+
+th:first-child{
+    border-right: 1px solid black;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.blank_row
+{
+    height: 3px !important; /* overwrites any other rules */
+    background-color: #343a40!important;
+}

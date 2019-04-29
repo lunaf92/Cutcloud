@@ -1,0 +1,31 @@
+[25-Mar-2019 19:14:49 Europe/London] PHP Warning:  require(/home/cutcloud/public_html/../vendor/autoload.php): failed to open stream: No such file or directory in /home/cutcloud/public_html/index.php on line 24
+[25-Mar-2019 19:14:49 Europe/London] PHP Warning:  require(/home/cutcloud/public_html/../vendor/autoload.php): failed to open stream: No such file or directory in /home/cutcloud/public_html/index.php on line 24
+[25-Mar-2019 19:14:49 Europe/London] PHP Fatal error:  require(): Failed opening required '/home/cutcloud/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/cutcloud/public_html/index.php on line 24
+[25-Mar-2019 20:36:15 Europe/London] PHP Warning:  symlink(): No such file or directory in /home/cutcloud/public_html/create_symlink.php on line 2
+[26-Mar-2019 07:31:00 UTC] PHP Warning:  Uncaught ErrorException: require(/home/cutcloud/cutcloud/vendor/dompdf/dompdf/lib/fonts/dompdf_font_family_cache.dist.php): failed to open stream: No such file or directory in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php:133
+Stack trace:
+#0 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(133): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/home/c...', '/home/cutcloud/...', 133, Array)
+#1 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(133): require()
+#2 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(72): Dompdf\FontMetrics->loadFontFamilies()
+#3 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/Dompdf.php(300): Dompdf\FontMetrics->__construct(Object(Dompdf\Adapter\CPDF), Object(Dompdf\Options))
+#4 /home/cutcloud/cutcloud/vendor/barryvdh/laravel-dompdf/src/ServiceProvider.php(49): Dompdf\Dompdf->__construct(Array)
+#5 /home/cutcloud/cutcloud/vendor/laravel/framework/src/Illuminate/Container/Container.php(776): Bar in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php on line 133
+[26-Mar-2019 07:31:00 UTC] PHP Fatal error:  Dompdf\FontMetrics::loadFontFamilies(): Failed opening required '/home/cutcloud/cutcloud/vendor/dompdf/dompdf/lib/fonts/dompdf_font_family_cache.dist.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php on line 133
+[26-Mar-2019 07:32:55 UTC] PHP Warning:  Uncaught ErrorException: require(/home/cutcloud/cutcloud/vendor/dompdf/dompdf/lib/fonts/dompdf_font_family_cache.dist.php): failed to open stream: No such file or directory in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php:133
+Stack trace:
+#0 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(133): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/home/c...', '/home/cutcloud/...', 133, Array)
+#1 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(133): require()
+#2 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(72): Dompdf\FontMetrics->loadFontFamilies()
+#3 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/Dompdf.php(300): Dompdf\FontMetrics->__construct(Object(Dompdf\Adapter\CPDF), Object(Dompdf\Options))
+#4 /home/cutcloud/cutcloud/vendor/barryvdh/laravel-dompdf/src/ServiceProvider.php(49): Dompdf\Dompdf->__construct(Array)
+#5 /home/cutcloud/cutcloud/vendor/laravel/framework/src/Illuminate/Container/Container.php(776): Bar in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php on line 133
+[26-Mar-2019 07:32:55 UTC] PHP Fatal error:  Dompdf\FontMetrics::loadFontFamilies(): Failed opening required '/home/cutcloud/cutcloud/vendor/dompdf/dompdf/lib/fonts/dompdf_font_family_cache.dist.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php on line 133
+[26-Mar-2019 07:33:14 UTC] PHP Warning:  Uncaught ErrorException: require(/home/cutcloud/cutcloud/vendor/dompdf/dompdf/lib/fonts/dompdf_font_family_cache.dist.php): failed to open stream: No such file or directory in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php:133
+Stack trace:
+#0 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(133): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/home/c...', '/home/cutcloud/...', 133, Array)
+#1 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(133): require()
+#2 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php(72): Dompdf\FontMetrics->loadFontFamilies()
+#3 /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/Dompdf.php(300): Dompdf\FontMetrics->__construct(Object(Dompdf\Adapter\CPDF), Object(Dompdf\Options))
+#4 /home/cutcloud/cutcloud/vendor/barryvdh/laravel-dompdf/src/ServiceProvider.php(49): Dompdf\Dompdf->__construct(Array)
+#5 /home/cutcloud/cutcloud/vendor/laravel/framework/src/Illuminate/Container/Container.php(776): Bar in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php on line 133
+[26-Mar-2019 07:33:14 UTC] PHP Fatal error:  Dompdf\FontMetrics::loadFontFamilies(): Failed opening required '/home/cutcloud/cutcloud/vendor/dompdf/dompdf/lib/fonts/dompdf_font_family_cache.dist.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/cutcloud/cutcloud/vendor/dompdf/dompdf/src/FontMetrics.php on line 133
