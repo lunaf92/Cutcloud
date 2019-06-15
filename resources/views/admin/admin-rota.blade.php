@@ -158,11 +158,11 @@
                             <span> Edit </span>
                         </a>
                     </div>
-                    <div class="col-md-1">
+                    {{-- <div class="col-md-1">
                         <a href="{{ action ('RotaController@pdf', "$currWeek")}}" class="btn btn-outline-dark float-left ">
                             <span> Export to PDF </span>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
         {!! Form::close() !!}
     </div>  

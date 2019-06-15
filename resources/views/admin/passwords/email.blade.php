@@ -36,6 +36,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
+                                <div>
+                                    <small><span class="text-danger">*</span> Check your spam folder if you didn't receive your reset email</small>
+                                </div>
                             </div>
                         </div>
                     </form>
