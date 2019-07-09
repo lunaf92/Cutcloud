@@ -12,6 +12,10 @@ use App\DraftRota;
 
 use App\User;
 
+use App\Colors;
+
+use App\Event_row;
+
 class DraftsController extends Controller
 {
 
@@ -64,6 +68,7 @@ class DraftsController extends Controller
     public function store(Request $request, $param)
     {
         $users = DB::table('users')->get();
+
         foreach($users as $user){
             
          //validation
@@ -72,7 +77,7 @@ class DraftsController extends Controller
             $user->id . '_week_no'=> 'required'
         ]);
         
-            //create a field
+            //create a field for the user
             $rota = new DraftRota;
             $rota->user_id = $request->input($user->id . '_user_id');
             $rota->week_no = $request->input($user->id . '_week_no');
@@ -84,7 +89,33 @@ class DraftsController extends Controller
             $rota->friday = $request->input($user->id . '_friday');
             $rota->saturday = $request->input($user->id . '_saturday');
             $rota->save();
+
+            //create a field for the color of the cells
+            $color = new Colors;
+            $color->user_id = $request->input($user->id . '_user_id');
+            $color->week_no = $request->input($user->id . '_week_no');
+            $color->sunday = $request->input($user->id . '_sunday_color');
+            $color->monday = $request->input($user->id . '_monday_color');
+            $color->tuesday = $request->input($user->id . '_tuesday_color');
+            $color->wednesday = $request->input($user->id . '_wednesday_color');
+            $color->thursday = $request->input($user->id . '_thursday_color');
+            $color->friday = $request->input($user->id . '_friday_color');
+            $color->saturday = $request->input($user->id . '_saturday_color');
+            $color->save();
         }
+
+
+            //create a field for the event of the week
+            $event = new Event_row;
+            $event->week_no = $param;
+            $event->sunday = $request->input($param . '_sunday');
+            $event->monday = $request->input($param . '_monday');
+            $event->tuesday = $request->input($param . '_tuesday');
+            $event->wednesday = $request->input($param . '_wednesday');
+            $event->thursday = $request->input($param . '_thursday');
+            $event->friday = $request->input($param . '_friday');
+            $event->saturday = $request->input($param . '_saturday');
+            $event->save();
 
         return redirect('rota-draft/'.$param)->with('success', 'Draft Updated!');
     }
@@ -102,11 +133,13 @@ class DraftsController extends Controller
         $currWeek = (string)$weekYearArray[0];
         $currentY = (string)$weekYearArray[1];
         $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek));
-        $users = DB::table('users')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
+        $users = DB::table('users')->orderBy('priority', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $currWeek = implode('_', $weekYearArray);
         $rotas = DraftRota::where('week_no', $currWeek)->orderBy('user_id', 'asc')->get();
+        $color = Colors::where('week_no', $currWeek)->orderBy('user_id', 'asc')->get();
+        $event = DB::table('event_rows')->where('week_no', 'like' , $currWeek)->get();
         //get all the instances of the 
-        return view('admin.rota-draft')->with(compact('users', 'dates', 'currWeek', 'rotas', 'positions'));
+        return view('admin.rota-draft')->with(compact('users', 'dates', 'currWeek', 'rotas', 'positions', 'color', 'event'));
     }
 
 
@@ -131,7 +164,11 @@ class DraftsController extends Controller
 
     public function destroy($id){
         $rota = DraftRota::where('week_no', $id)->get();
+        $colors = Colors::where('week_no', $id)->get();
+        $event = Event_row::where('week_no', $id)->get();
         $rota->each->delete();
+        $colors->each->delete();
+        $event->each->delete();
         return;
     }
 }

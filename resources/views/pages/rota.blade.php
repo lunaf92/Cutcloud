@@ -66,6 +66,16 @@
                             <th scope="row"> {!!$dates[$i]!!} </th>
                         @endfor
                     </tr>
+                    <tr>
+                        <th> </th>
+                        <th scope="row"> {!!(isset($event[0]->sunday)) ? $event[0]->sunday : ' '!!} </th>
+                        <th scope="row"> {!!(isset($event[0]->monday)) ? $event[0]->monday : ' '!!} </th>
+                        <th scope="row"> {!!(isset($event[0]->tuesday)) ? $event[0]->tuesday : ' '!!} </th>
+                        <th scope="row"> {!!(isset($event[0]->wednesday)) ? $event[0]->wednesday : ' '!!} </th>
+                        <th scope="row"> {!!(isset($event[0]->thursday)) ? $event[0]->thursday : ' '!!} </th>
+                        <th scope="row"> {!!(isset($event[0]->friday)) ? $event[0]->friday : ' '!!} </th>
+                        <th scope="row"> {!!(isset($event[0]->saturday)) ? $event[0]->saturday : ' '!!} </th>
+                    </tr>
                 </thead>
                 <tbody>
                     <!--
@@ -99,49 +109,57 @@
                                 <th scope="row">
                                     {{$user->first_name}}
                                 </th>
-                                <th scope="row">
+                                @php
+                                    for($i=0; $i<count($users); $i++){
+                                        if($users[$i]->id == $user->id){
+                                            $x = $i;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->sunday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('sunday');
                                     $currDay = trim($currDay, "[\"]");
                                     echo($currDay);   
                                     ?>
                                 </th>
-                                <th scope="row">
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->monday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('monday');
                                     $currDay = trim($currDay, "[\"]");
                                     echo($currDay);   
                                     ?>
                                 </th>
-                                <th scope="row">
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->tuesday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('tuesday');
                                     $currDay = trim($currDay, "[\"]");
                                     echo($currDay);   
                                     ?>
                                 </th>
-                                <th scope="row">
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->wednesday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('wednesday');
                                     $currDay = trim($currDay, "[\"]");
                                     echo($currDay);   
                                     ?>
                                 </th>
-                                <th scope="row">
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->thursday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('thursday');
                                     $currDay = trim($currDay, "[\"]");
                                     echo($currDay);   
                                     ?>
                                 </th>
-                                <th scope="row">
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->friday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('friday');
                                     $currDay = trim($currDay, "[\"]");
                                     echo($currDay);   
                                     ?>
                                 </th>
-                                <th scope="row">
+                                <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->saturday : '' !!}" >
                                     <?php
                                     $currDay = (string)$rotas->where('week_no', 'like', $currWeek)->where('user_id', 'like', $user->id)->pluck('saturday');
                                     $currDay = trim($currDay, "[\"]");

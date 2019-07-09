@@ -66,6 +66,23 @@
                     </select>
                 </span>
             </div>
+            <div class="form-group row">
+                <span class="col-md-3">
+                    priority
+                </span>
+                <span class="col-md-3">
+                    {{$user->priority}}
+                </span>
+                <span class="col-md-6">
+                    <select name="priority" id="priority">
+                        <option value="{{$user->priority}}">{{$user->priority}}</option>
+                        <option value="1">High</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Low</option>
+                        <option value="4">Regular User</option>
+                    </select>
+                </span>
+            </div>
             {{Form::hidden('_method', 'PUT')}}
             {{Form::submit('Submit', ['class' => 'btn btn-primary text-center'])}}
         {!! Form::close() !!}

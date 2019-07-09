@@ -90,14 +90,16 @@ class AccountsController extends Controller
             'first_name' => 'string|required',
             'last_name' => 'string|required',
             'email' => 'email|required',
-            'position' => 'required'
+            'position' => 'required',
+            'priority' => 'required'
         ]);
         $userToUpdate->first_name = $request->input('first_name');
         $userToUpdate->last_name = $request->input('last_name');
         $userToUpdate->email = $request->input('email');
         $userToUpdate->position = $request->input('position');
+        $userToUpdate->priority = $request->input('priority') ;
         $userToUpdate->save();
-        return $this->editUser($id)->with('success', 'user edited successfully!');
+        return $this->users()->with('success', 'user edited successfully!');
     }
 
     public function deleteUser($id){

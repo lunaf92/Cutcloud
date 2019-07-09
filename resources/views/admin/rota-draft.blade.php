@@ -64,6 +64,35 @@
                     <div class="head-table-cell"> {!!$dates[$i]!!} </div>
                 @endfor
             </div>
+            @php
+                
+            @endphp
+            <div class="table-row">
+                <div class="table-cell">
+
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_sunday" value="{!! (isset($event[0]->sunday)) ? $event[0]->sunday : ' ' !!}" type="text">
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_monday" value="{!! (isset($event[0]->monday)) ? $event[0]->monday : ' ' !!}" type="text">
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_tuesday" value="{!! (isset($event[0]->tuesday)) ? $event[0]->tuesday : ' ' !!}" type="text">
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_wednesday" value="{!! (isset($event[0]->wednesday)) ? $event[0]->wednesday : ' ' !!}" type="text">
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_thursday" value="{!! (isset($event[0]->thursday)) ? $event[0]->thursday : ' ' !!}" type="text">
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_friday" value="{!! (isset($event[0]->friday)) ? $event[0]->friday : ' ' !!}" type="text">
+                </div>
+                <div class="table-cell">
+                    <input name="{!! $currWeek !!}_saturday" value="{!! (isset($event[0]->saturday)) ? $event[0]->saturday : ' ' !!}" type="text">
+                </div>
+            </div>
             <!--
                 * create a loop to iterate through each instance in the weekly rota database
                 * and create a row for each one; in case the username coincides with the name in the rota
@@ -98,25 +127,39 @@
                                 <input name="{!! $user->id !!}_week_no" type="hidden" value="{{$currWeek}}">
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_sunday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->sunday : '.' ) : '.' !!}">         
+                                <input type="text" id="{!! $user->id !!}_sunday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->sunday : 'rgb(255, 255, 255)' !!}" name="{!! $user->id !!}_sunday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->sunday : '.' ) : '.' !!}">         
+                                <input name="{!! $user->id !!}_sunday_color" value="{!! (isset($color[$k])) ? $color[$k]->sunday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_sunday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_sunday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_sunday')"></span>
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_monday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->monday : '.' ) : '.' !!}">      
+                                <input type="text" id="{!! $user->id !!}_monday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->monday : 'rgb(255, 255, 255)' !!}" name="{!! $user->id !!}_monday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->monday : '.' ) : '.' !!}"> 
+                                <input name="{!! $user->id !!}_monday_color" value="{!! (isset($color[$k])) ? $color[$k]->monday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_monday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_monday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_monday')"></span>     
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_tuesday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->tuesday : '.' ) : '.' !!}">    
+                                <input type="text" id="{!! $user->id !!}_tuesday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->tuesday : 'rgb(255, 255, 255)' !!}"  name="{!! $user->id !!}_tuesday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->tuesday : '.' ) : '.' !!}"> 
+                                <input name="{!! $user->id !!}_tuesday_color" value="{!! (isset($color[$k])) ? $color[$k]->tuesday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_tuesday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_tuesday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_tuesday')"></span>   
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_wednesday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->wednesday : '.' ) : '.' !!}">   
+                                <input type="text" id="{!! $user->id !!}_wednesday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->wednesday : 'rgb(255, 255, 255)' !!}"  name="{!! $user->id !!}_wednesday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->wednesday : '.' ) : '.' !!}">
+                                <input name="{!! $user->id !!}_wednesday_color" value="{!! (isset($color[$k])) ? $color[$k]->wednesday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_wednesday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_wednesday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_wednesday')"></span>   
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_thursday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->thursday : '.' ) : '.' !!}">       
+                                <input type="text" id="{!! $user->id !!}_thursday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->thursday : 'rgb(255, 255, 255)' !!}"  name="{!! $user->id !!}_thursday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->thursday : '.' ) : '.' !!}"> 
+                                <input name="{!! $user->id !!}_thursday_color" value="{!! (isset($color[$k])) ? $color[$k]->thursday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_thursday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_thursday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_thursday')"></span>      
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_friday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->friday : '.' ) : '.' !!}">         
+                                <input type="text" id="{!! $user->id !!}_friday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->friday : 'rgb(255, 255, 255)' !!}"  name="{!! $user->id !!}_friday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->friday : '.' ) : '.' !!}">  
+                                <input name="{!! $user->id !!}_friday_color" value="{!! (isset($color[$k])) ? $color[$k]->friday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_friday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_friday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_friday')"></span>       
                             </div>
                             <div class="table-cell">
-                                <input type="text" name="{!! $user->id !!}_saturday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->saturday : '.' ) : '.' !!}">         
+                                <input type="text" id="{!! $user->id !!}_saturday" style="background-color: {!! (isset($color[$k])) ? $color[$k]->saturday : 'rgb(255, 255, 255)' !!}"  name="{!! $user->id !!}_saturday" class="form-control" value="{!! (isset($rotas[$k])) ? (($rotas[$k]->user_id == $user->id) ? $rotas[$k]->saturday : '.' ) : '.' !!}">  
+                                <input name="{!! $user->id !!}_saturday_color" value="{!! (isset($color[$k])) ? $color[$k]->saturday : 'rgb(255, 255, 255)' !!}" id="color{{ $user->id }}_saturday" class="d-none"> 
+                                <span id="b_{!! $user->id !!}_saturday" class="btn btn-outline-secondary" onclick="changeColor('{!! $user->id !!}_saturday')"></span>       
                             </div>    
                         </div>
                     @endif

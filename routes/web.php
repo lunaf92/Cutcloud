@@ -57,3 +57,5 @@ Route::get('/manageUsers', 'AccountsController@users');
 Route::get('/updateUser/{id}', 'AccountsController@editUser');
 Route::put('/updateUser/{id}', 'AccountsController@updateUser');
 Route::delete('/manageUsers/{id}', 'AccountsController@deleteUser');
+
+

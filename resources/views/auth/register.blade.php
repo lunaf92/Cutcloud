@@ -78,6 +78,25 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="priority" class="col-md-4 col-form-label text-md-right">{{ __('priority') }}</label>
+
+                            <div class="col-md-6">
+                                    <select name="priority" id="priority">
+                                        <option value="4">regular user</option>
+                                        <option value="1">high</option>
+                                        <option value="2">medium</option>
+                                        <option value="3">low</option>
+                                    </select>
+
+                                @if ($errors->has('priority'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('priority') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

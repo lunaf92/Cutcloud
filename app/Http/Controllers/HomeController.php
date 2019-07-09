@@ -10,6 +10,8 @@ use PDF;
 
 use User;
 
+use App\Colors;
+
 class HomeController extends Controller
 {
     /**
@@ -17,10 +19,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -69,11 +71,13 @@ class HomeController extends Controller
         $currWeek = date("W") . '_' . date("Y");
         $positions_obj = DB::table('users')->select('position')->groupBy('position')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $positions = json_decode(json_encode($positions_obj), true);
-        $users = DB::table('users')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
+        $users = DB::table('users')->orderBy('id', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $rotas = DB::table('rotas')->get();
         $currentUser = auth()->user()->id;
         $singleToShow = DB::table('rotas')->where('user_id', "$currentUser")->where('week_no', "$currWeek")->get();
-        return view('pages.rota')->with(compact('users', 'rotas', 'dates', 'currWeek', 'currentUser', 'singleToShow', 'positions'));
+        $colors = Colors::where('week_no', "$currWeek")->orderBy('user_id', 'asc')->get();
+        $event = DB::table('event_rows')->where('week_no', 'like' , $currWeek)->get();
+        return view('pages.rota')->with(compact('users', 'rotas', 'dates', 'currWeek', 'currentUser', 'singleToShow', 'positions', 'colors', 'event'));
     }
 
     public function toggleWeek($param){
@@ -83,12 +87,14 @@ class HomeController extends Controller
         $currWeek = (string)$weekYearArray[0];
         $currentY = (string)$weekYearArray[1];
         $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek));
-        $users = DB::table('users')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
+        $users = DB::table('users')->orderBy('priority', 'asc')->orderBy('id', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $rotas = DB::table('rotas')->get();
         $currentUser = auth()->user()->id;
         $currWeek = implode('_', $weekYearArray);
         $singleToShow = DB::table('rotas')->where('user_id', "$currentUser")->where('week_no', "$currWeek")->get();
-        return view('pages.rota')->with(compact('users', 'rotas', 'dates', 'currWeek', 'currentUser', 'singleToShow', 'positions'));
+        $colors = Colors::where('week_no', "$currWeek")->orderBy('user_id', 'asc')->get();
+        $event = DB::table('event_rows')->where('week_no', 'like' , $currWeek)->get();
+        return view('pages.rota')->with(compact('users', 'rotas', 'dates', 'currWeek', 'currentUser', 'singleToShow', 'positions', 'colors', 'event'));
     }
 
 
@@ -101,10 +107,12 @@ class HomeController extends Controller
         $currWeek = (string)$weekYearArray[0];
         $currentY = (string)$weekYearArray[1];
         $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek));
-        $users = DB::table('users')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
+        $users = DB::table('users')->orderBy('priority', 'asc')->orderBy('id', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $rotas = DB::table('rotas')->get();
         $currWeek = implode('_', $weekYearArray);
-        return view('pages.rota-toprint')->with(compact('users', 'rotas', 'dates', 'currWeek', 'positions'));
+        $colors = Colors::where('week_no', "$currWeek")->orderBy('user_id', 'asc')->get();
+        $event = DB::table('event_rows')->where('week_no', 'like' , $currWeek)->get();
+        return view('pages.rota-toprint')->with(compact('users', 'rotas', 'dates', 'currWeek', 'positions', 'colors', 'event'));
         
     }
 
@@ -115,10 +123,12 @@ class HomeController extends Controller
         $currWeek = (string)$weekYearArray[0];
         $currentY = (string)$weekYearArray[1];
         $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek));
-        $users = DB::table('users')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
+        $users = DB::table('users')->orderBy('priority', 'asc')->orderBy('id', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $rotas = DB::table('rotas')->get();
         $currWeek = implode('_', $weekYearArray);
-        $html = view("pages.rota-toprint")->with(compact('users', 'rotas', 'dates', 'currWeek', 'positions'))->render();
+        $colors = Colors::where('week_no', "$currWeek")->orderBy('user_id', 'asc')->get();
+        $event = DB::table('event_rows')->where('week_no', 'like' , $currWeek)->get();
+        $html = view("pages.rota-toprint")->with(compact('users', 'rotas', 'dates', 'currWeek', 'positions', 'colors', 'event'))->render();
         $pdf = PDF::loadHTML($html);
         return $pdf->download('rota.pdf');
     }
