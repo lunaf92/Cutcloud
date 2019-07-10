@@ -63,6 +63,8 @@
                                         break;
                                     }
                                 }
+
+                                dd($colors);
                             @endphp
                             <th scope="row" style="background-color: {!! (isset($colors[$x])) ? $colors[$x]->sunday : '' !!}" >
                                 <?php

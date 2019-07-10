@@ -77,15 +77,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="priority" class="col-md-4 col-form-label text-md-right">{{ __('priority') }}</label>
 
                             <div class="col-md-6">
                                     <select name="priority" id="priority">
-                                        <option value="4">regular user</option>
+                                        <option value="">select an option</option>
                                         <option value="1">high</option>
                                         <option value="2">medium</option>
                                         <option value="3">low</option>
+                                        <option value="4">regular user</option>
                                     </select>
 
                                 @if ($errors->has('priority'))
@@ -94,7 +95,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

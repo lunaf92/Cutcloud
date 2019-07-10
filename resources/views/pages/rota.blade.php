@@ -110,8 +110,8 @@
                                     {{$user->first_name}}
                                 </th>
                                 @php
-                                    for($i=0; $i<count($users); $i++){
-                                        if($users[$i]->id == $user->id){
+                                    for($i=0; $i<count($colors); $i++){
+                                        if($colors[$i]->user_id == $user->id){
                                             $x = $i;
                                             break;
                                         }

@@ -32,12 +32,23 @@ function changeColor(id){
 	let bg = document.getElementById(id).style.backgroundColor;
   console.log(element.value);
   if(bg=="rgb(255, 255, 255)"){
+    //blue
   	document.getElementById(id).style.background = "rgb(0, 112, 192)";
     return element.value = "rgb(0, 112, 192)";
   }else if(bg == "rgb(0, 112, 192)"){
-  	document.getElementById(id).style.background = "rgb(255, 192, 0)";
+    // bright yellow
+  	document.getElementById(id).style.background = "rgb(255, 254, 4)";
+      return element.value = "rgb(255, 254, 4)";
+  }else if(bg == "rgb(255, 254, 4)"){
+    //green
+      document.getElementById(id).style.background = "rgb(112, 173, 70)";
+    return element.value = "rgb(112, 173, 70)";
+  }else if(bg == "rgb(112, 173, 70)"){
+    // dark yellow
+      document.getElementById(id).style.background = "rgb(255, 192, 0)";
     return element.value = "rgb(255, 192, 0)";
   }else{
+    // white
   	document.getElementById(id).style.background = "rgb(255, 255, 255)";
     return element.value = "rgb(255, 255, 255)";
   }

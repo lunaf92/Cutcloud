@@ -106,7 +106,7 @@ class HomeController extends Controller
         $positions = json_decode(json_encode($positions_obj), true);
         $currWeek = (string)$weekYearArray[0];
         $currentY = (string)$weekYearArray[1];
-        $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek));
+        $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek), $format = 'd-m');
         $users = DB::table('users')->orderBy('priority', 'asc')->orderBy('id', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $rotas = DB::table('rotas')->get();
         $currWeek = implode('_', $weekYearArray);
@@ -122,7 +122,7 @@ class HomeController extends Controller
         $positions = json_decode(json_encode($positions_obj), true);
         $currWeek = (string)$weekYearArray[0];
         $currentY = (string)$weekYearArray[1];
-        $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek));
+        $dates = $this->week_dates($date =sprintf("%4dW%02d", $currentY, $currWeek), $format = 'd-m');
         $users = DB::table('users')->orderBy('priority', 'asc')->orderBy('id', 'asc')->orderByRaw("FIELD(position , 'manager', 'supervisor', 'hostess', 'sommelier', 'chef de rang', 'expo', 'commis', 'casual') ASC")->get();
         $rotas = DB::table('rotas')->get();
         $currWeek = implode('_', $weekYearArray);
